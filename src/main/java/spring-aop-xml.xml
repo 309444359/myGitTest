@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        "
+        >
+    <!-- 配置bean -->
+	<bean id="orderServiceImpl" class="com.bluemobi.mavenTest.aop.service.impl.OrderServiceImpl"></bean>
+	<bean id="userServiceImpl" class="com.bluemobi.mavenTest.aop.service.impl.UserServiceImpl"></bean>
+	
+	<!-- 配置切面的 bean -->
+	<bean id="logAspect" class="com.bluemobi.mavenTest.aop.LogAspect"></bean>
+	<bean id="vlidationAspect" class="com.bluemobi.mavenTest.aop.VlidationAspect"></bean>
+	
+	<!-- 配置切面的 aop -->
+	<aop:config>
+	
+		<!-- 配置切点表达式 -->
+		<aop:pointcut expression="execution(* com.bluemobi.mavenTest.aop.service.*.*(..))" id="serviceJoinPoint"/>
+		
+		<!-- 配置切面及通知 ,可多个 -->
+		<aop:aspect ref="logAspect" order="2">
+			<aop:before method="beforeMethod" pointcut-ref="serviceJoinPoint"/>
+			<aop:after method="afterMethod" pointcut-ref="serviceJoinPoint"/>
+			<aop:after-throwing method="afterThrowing" pointcut-ref="serviceJoinPoint" throwing="e"/>
+			<aop:after-returning method="afterReturning" pointcut-ref="serviceJoinPoint" returning="result"/>
+			<!-- <aop:around method="aroundMethod" pointcut-ref="serviceJoinPoint"/> -->
+		</aop:aspect>
+		<aop:aspect ref="vlidationAspect" order="1">
+			<aop:before method="beforeMethod" pointcut-ref="serviceJoinPoint"/>
+		</aop:aspect>
+		
+	</aop:config>
+	
+	
+	
+</beans>
