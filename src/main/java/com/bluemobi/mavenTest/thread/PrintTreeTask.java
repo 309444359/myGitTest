@@ -3,8 +3,8 @@ package com.bluemobi.mavenTest.thread;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.bluemobi.mavenTest.tree.BinaryTree;
-import com.bluemobi.mavenTest.tree.TreeNode;
+import com.bluemobi.mavenTest.algorithm.lru.tree.BinaryTree;
+import com.bluemobi.mavenTest.algorithm.lru.tree.TreeNode;
 
 public class PrintTreeTask implements Runnable {
 	

@@ -1,8 +1,11 @@
 package com.bluemobi.mavenTest.aop;
 
+import com.bluemobi.mavenTest.aop.service.impl.OrderServiceImpl;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bluemobi.mavenTest.aop.service.OrderService;
+
+import java.util.concurrent.TimeUnit;
 
 public class SpringMain {
 	
@@ -11,10 +14,10 @@ public class SpringMain {
 		//1. 创建 IOC 容器
 		//ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-aop.xml");
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-aop-xml.xml");
-		
+
 		//2. 从 IOC 容器中获取 bean 实例
 		OrderService orderService = (OrderService) context.getBean("orderServiceImpl");
-		
+
 		//3. 调用 bean 的方法
 		Integer count = orderService.addOrder(888, "haoj~~");
 		System.out.println("----->count:"+count);

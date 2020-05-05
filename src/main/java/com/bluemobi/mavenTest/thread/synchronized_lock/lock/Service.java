@@ -38,10 +38,10 @@ public class Service{
 	
 	
 	private void readNoLock(){
-		for(int i=0;i<11;i++){
+		for(int i=0;i<3;i++){
 			System.out.println("我在读......."+Thread.currentThread().getName()+"，循环次数："+i);
 			try {
-				Thread.sleep(1);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -50,10 +50,10 @@ public class Service{
 	
 	
 	private void writeNoLock(){
-		for(int i=1;i<11;i++){
+		for(int i=1;i<3;i++){
 			System.out.println("我在写......."+Thread.currentThread().getName()+"，循环次数："+i);
 			try {
-				Thread.sleep(1);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

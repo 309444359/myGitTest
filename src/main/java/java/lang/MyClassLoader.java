@@ -19,7 +19,7 @@ public class MyClassLoader extends ClassLoader {
 			}
 			byte[] bb = new byte[is.available()];
 			is.read(bb);
-			System.out.println("使用 MyClassLoader 类加载器");
+			System.out.println("使用 MyClassLoader 类加载器"); 
 			Class c = this.defineClass(name, bb, 0, bb.length);
 			return c;
 			
